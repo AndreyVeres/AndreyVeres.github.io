@@ -7,12 +7,10 @@ class MarvelService {
         if(!res.ok) {
             throw new Error (`Could not fetch ${url} , status ${res.status}`)
         }
-
         return await res.json()
     }
 
-      
-
+    
     getAllCharacters = async() => {
         const res = await this.getResource(`${this._apiBase}characters?limit=9&${this._apiKey}`);
         return res.data.results.map(this._transformCharacter)
@@ -20,15 +18,17 @@ class MarvelService {
 
     getCharacter = async(id) => {
         const res =  await this.getResource(`${this._apiBase}characters/${id}?${this._apiKey}`);
-     
+        console.log(res)
         return this._transformCharacter(res.data.results[0])
     }
 
     _transformCharacter = (char) => {
+        let thumbnailNotFound = char.thumbnail.path.indexOf('image_not')
+        
         return {
             name: char.name,
-            description: char.description,
-            thumbnail: `${char.thumbnail.path}.${char.thumbnail.extension}`,
+            description: char.description === '' ? 'Нету данных об этом персонаже' : char.description.slice(0,100)+ '...' ,
+            thumbnail: thumbnailNotFound > 0 ? console.log(char.thumbnail) :`${char.thumbnail.path}.${char.thumbnail.extension}`,
             homepage : char.urls[0].url,
             wiki : char.urls[1].url,
         }

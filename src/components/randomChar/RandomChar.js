@@ -8,7 +8,7 @@ import { Component } from 'react';
 class RandomChar extends Component {
     constructor(props) {
         super(props);
-        this.UpdateChar()
+       
     }
 
 
@@ -39,6 +39,15 @@ class RandomChar extends Component {
             loading : false,
             error : true
         })
+    }
+
+    componentDidMount () {
+        this.UpdateChar()
+        // this.timer = setInterval(this.UpdateChar , 3000)
+    }
+
+    componentWillUnmount() {
+        // clearInterval(this.timer);
     }
 
 

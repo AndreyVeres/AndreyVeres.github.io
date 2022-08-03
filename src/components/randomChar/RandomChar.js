@@ -8,7 +8,7 @@ import { Component } from 'react';
 class RandomChar extends Component {
     constructor(props) {
         super(props);
-       
+
     }
 
 
@@ -27,6 +27,7 @@ class RandomChar extends Component {
 
     UpdateChar = () => {
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000)
+        this.setState({ loading: true })
         this.marvelService
             .getCharacter(id)
             .then(this.onCharLoaded)
@@ -36,12 +37,12 @@ class RandomChar extends Component {
 
     onError = () => {
         this.setState({
-            loading : false,
-            error : true
+            loading: false,
+            error: true
         })
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.UpdateChar()
         // this.timer = setInterval(this.UpdateChar , 3000)
     }
@@ -52,17 +53,17 @@ class RandomChar extends Component {
 
 
     render() {
-        const { char, loading , error } = this.state;
-        const spinner = loading ? <Spinner/> : null;
-        const errorMessage = error ? <Error/> : null ;
-        const content = !(loading || error) ? <View char = {char}/> :null
+        const { char, loading, error } = this.state;
+        const spinner = loading ? <Spinner /> : null;
+        const errorMessage = error ? <Error /> : null;
+        const content = !(loading || error) ? <View char={char} /> : null
 
 
         return (
             <div className="randomchar">
-               {errorMessage}
-               {spinner}
-               {content}
+                {errorMessage}
+                {spinner}
+                {content}
                 <div className="randomchar__static">
                     <p className="randomchar__title">
                         Random character for today!<br />

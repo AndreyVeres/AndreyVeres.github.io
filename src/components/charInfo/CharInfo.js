@@ -1,5 +1,4 @@
 import './charInfo.scss';
-import thor from '../../resources/img/thor.jpeg';
 import MarvelService from '../../services/MarvelService';
 import Error from '../error/Error';
 import Spinner from '../spinner/Spinner';
@@ -66,7 +65,7 @@ class CharInfo extends Component {
         const errorMessage = error ? <Error /> : null;
         const spinner = loading ? <Spinner /> : null;
         const content = !(loading || error || !char) ? <View char={char} /> : null;
-
+        console.log(skeleton)
 
         return (
             <div className="char__info">
@@ -74,6 +73,7 @@ class CharInfo extends Component {
                 {errorMessage}
                 {spinner}
                 {content}
+               
             </div>
         )
     }

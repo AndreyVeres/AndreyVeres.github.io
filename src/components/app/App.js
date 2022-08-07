@@ -5,7 +5,6 @@ import CharInfo from "../charInfo/CharInfo";
 import { Component } from "react";
 import ErrorBoundary from "../errorBoundary/ErrorBoundary";
 import decoration from '../../resources/img/vision.png';
-
 class App extends Component {
 
     state = {
@@ -23,6 +22,7 @@ class App extends Component {
             <div className="app">
                 <AppHeader />
                 <main>
+                
                     <ErrorBoundary>
                         <RandomChar />
                     </ErrorBoundary>
@@ -39,7 +39,9 @@ class App extends Component {
 
                     </div>
                     <img className="bg-decoration" src={decoration} alt="vision" />
+                   
                 </main>
+                
             </div>
         )
     }
